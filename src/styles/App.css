@@ -28,3 +28,10 @@
     color: rgb(70, 88, 255);
     padding-top: 15px;
 }
+
+.no__post {
+    text-align: center;
+    font-size: 35px;
+    padding-top: 50px;
+    color: rgb(26, 39, 150);
+}

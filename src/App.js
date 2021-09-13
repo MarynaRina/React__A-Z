@@ -1,8 +1,10 @@
 import './styles/App.css'
-import React, { useState } from "react";
+import React, {useMemo, useState } from "react";
 import PostList from "./components/PostList";
-import MyButton from './components/UI/button/MyButton';
-import MyInput from './components/UI/input/MyInput';
+
+import PostForm from './components/PostForm';
+import PostFilter from './components/PostFilter';
+import MyModal from './components/UI/MyModal/MyModal';
 
 function App() {
     const [posts, setPosts] = useState([
@@ -11,39 +13,45 @@ function App() {
         { id: 3, title: 'HTML', body: 'prog lang' },
     ]);
 
-    const [post, setPost] = useState({
-        title: '',
-        body: ''
-    });
-    const [body, setBody] = useState('');
+    const [filter, setFilter] = useState({sort: '', query: ''});
 
-    const addNewPost = (e) => {
-        e.preventDefault();
-        
-        setPosts([...posts, {...post, id: Date.now()}])
-        setPost({title: '',body: ''})
+    
+    const sortedPosts = useMemo(()=> {
+        if (filter.sort) {
+            return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]))
+        }
+        return posts;
+    }, [filter.sort, posts]);
+
+    const sortedAndSearchedPosts = useMemo(() => {
+        return sortedPosts.filter(post => post.title.toLocaleLowerCase().includes(filter.query))
+    }, [filter.query, sortedPosts]);
+
+    const createPost = (newPost) => {
+        setPosts([...posts, newPost])
     }
+
+    const removePost = (post) => {
+        setPosts(posts.filter(p => p.id !== post.id))
+    }
+
 
     return (
         <div className="App">
-            <form>
-                <MyInput 
-                    value={post.title}
-                    onChange={e => setPost({
-                        ...post, title: e.target.value})}
-                    type='text' 
-                    placeholder='Post title'
+            <MyModal></MyModal>
+            <PostForm create={createPost}/>
+            <hr style={{margin: '15px 0'}}/>
+            <PostFilter
+                filter={filter}
+                setFilter={setFilter}
+            />
+                <PostList  
+                    remove={removePost} 
+                    posts={sortedAndSearchedPosts} 
+                    title='List of posts'
                 />
-                <MyInput 
-                    value={post.body}
-                    onChange={e => setPost({
-                        ...post, body: e.target.value})}
-                    type='text' 
-                    placeholder='Post description'
-                />
-                <MyButton onClick={addNewPost}>Create post</MyButton>
-            </form>
-            <PostList posts={posts} title='List of posts'/>
+            
+            
         </div>
     );
 }
