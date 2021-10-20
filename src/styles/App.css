@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:wght@300&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -11,6 +15,8 @@
 }
 
 .App {
+    font-family: 'Patrick Hand SC', cursive;
+    font-size: 20px;
     width: 800px;
 }
 
@@ -24,6 +30,7 @@
 }
 
 .post__title {
+    font-family: 'Patrick Hand', cursive;
     text-align: center;
     color: rgb(70, 88, 255);
     padding-top: 15px;
@@ -34,4 +41,82 @@
     font-size: 35px;
     padding-top: 50px;
     color: rgb(26, 39, 150);
+}
+
+.load__page {
+    text-align: center;
+    font-size: 35px;
+    padding-top: 50px;
+    color: rgb(170, 49, 154);
+}
+
+.remove-btn {
+  margin-right: 0.5rem;
+}
+.post__btns{
+  display: flex;
+}
+
+.post-enter {
+  transform: translateX(-350px);
+}
+.post-enter-active {
+  transform: translateX(0px);
+  transition: all 500ms ease-in;
+}
+.post-exit {
+  opacity: 1;
+}
+.post-exit-active {
+  transform: translateX(-350px);
+  transition: all 500ms ease-in;
+}
+.page__wrapper {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+.page {
+  padding: 10px;
+  border: 1px solid rgb(11, 32, 126);
+  cursor: pointer;
+}
+.page__current {
+  border: 2px solid rgb(11, 32, 126);
+  background:  rgb(149, 148, 235);
+  font-weight: bold;
+}
+
+.navbar {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 25px;
+  background-color: rgb(154, 188, 223);
+}
+
+.navbar__items {
+  margin-left: auto;
+}
+
+.navbar__link {
+  font-family: 'Grandstander', cursive;
+  padding: 10px;
+  text-decoration: none;
+  color: rgb(93, 39, 194);
+  font-size: 16px;
+}
+
+.error__page {
+  padding-top: 40px;
+  color: blueviolet;
+}
+.post__page-title{
+  padding: 20px 0 15px 0;
+  color: #B580DB;
+}
+.comments-title {
+  border-bottom: 2px solid #DB649E;
+  width: 150px;
 }

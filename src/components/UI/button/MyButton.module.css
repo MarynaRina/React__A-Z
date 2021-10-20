@@ -1,8 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
 .myBtn {
+    font-family: 'Architects Daughter', cursive;
     padding: 5px 20px;
-    font-size: 14px;
+    font-size: 16px;
     color: rgb(147, 78, 212);
     background: transparent;
     border: 2px solid rgb(147, 78, 212);
     cursor: pointer;
+    margin-left: 4px;
+    transition: all 0.4s ease-in-out;
+    font-weight: bold;
+
+}
+
+.myBtn:hover {
+    background-color: rgb(206, 190, 233);
 }
